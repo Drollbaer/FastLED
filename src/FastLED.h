@@ -467,6 +467,15 @@ public:
 		static CWS2812SerialController<DATA_PIN,RGB_ORDER> controller;
 		return addLeds(&controller, data, nLedsOrOffset, nLedsIfOffset);
 	}
+
+	/// Modified with Reverse Flag
+	template<SWS2812 CHIPSET, int DATA_PIN, EOrder RGB_ORDER>
+	static CLEDController &addLedsR(struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, bool bReverse)
+	{
+		static CWS2812SerialController<DATA_PIN,RGB_ORDER> controller;
+		return addLedsR(&controller, data, nLedsOrOffset, nLedsIfOffset, bReverse);
+	}
+
 #endif
 
 #ifdef SmartMatrix_h
