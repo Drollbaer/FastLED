@@ -54,7 +54,7 @@ CLEDController &CFastLED::addLeds(CLEDController *pLed,
 /// Drollbaer
 CLEDController &CFastLED::addLedsR(CLEDController *pLed,
 								  struct CRGB *data,
-								  int nLedsOrOffset, int nLedsIfOffset, int nReverse) {
+								  int nLedsOrOffset, int nReverse, int nLedsIfOffset) {
 	int nOffset = (nLedsIfOffset > 0) ? nLedsOrOffset : 0;
 	int nLeds = (nLedsIfOffset > 0) ? nLedsIfOffset : nLedsOrOffset;
 	int nRev = (nReverse < 0) ? 0 : nReverse;  
