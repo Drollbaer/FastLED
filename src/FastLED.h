@@ -242,7 +242,7 @@ public:
 	/// @param nLedsIfOffset number of leds (4 argument version)
 	/// @returns a reference to the added controller
 	static CLEDController &addLeds(CLEDController *pLed, struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0);
-	static CLEDController &addLedsR(CLEDController *pLed, struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, bool bReverse = false);
+	static CLEDController &addLedsR(CLEDController *pLed, struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, int nReverse);
 	/// @name Adding SPI-based controllers
 	/// Add an SPI based CLEDController instance to the world.
 	///
@@ -371,9 +371,9 @@ public:
 	/// Drollbaer: 19.06.2023
 	/// Add a clockless based CLEDController instance to the world.
 	template<template<uint8_t DATA_PIN, EOrder RGB_ORDER> class CHIPSET, uint8_t DATA_PIN, EOrder RGB_ORDER>
-	static CLEDController &addLedsR(struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, bool bReverse) {
+	static CLEDController &addLedsR(struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, int nReverse) {
 		static CHIPSET<DATA_PIN, RGB_ORDER> c;
-		return addLedsR(&c, data, nLedsOrOffset, nLedsIfOffset, bReverse);
+		return addLedsR(&c, data, nLedsOrOffset, nLedsIfOffset, nReverse);
 	}
 
 #if defined(__FASTLED_HAS_FIBCC) && (__FASTLED_HAS_FIBCC == 1)
@@ -471,10 +471,10 @@ public:
 
 	/// Modified with Reverse Flag - Drollbaer
 	template<SWS2812 CHIPSET, int DATA_PIN, EOrder RGB_ORDER>
-	static CLEDController &addLedsR(struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, bool bReverse)
+	static CLEDController &addLedsR(struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, int nReverse)
 	{
 		static CWS2812SerialController<DATA_PIN,RGB_ORDER> controller;
-		return addLedsR(&controller, data, nLedsOrOffset, nLedsIfOffset, bReverse);
+		return addLedsR(&controller, data, nLedsOrOffset, nLedsIfOffset, nReverse);
 	}
 
 #endif
