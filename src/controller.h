@@ -149,6 +149,16 @@ public:
     /// Set the default array of LEDs to be used by this controller
     /// @param data pointer to the LED data
     /// @param nLeds the number of LEDs in the LED data
+    CLEDController & setLeds(CRGB *data, int nLeds) {
+        m_Data = data;
+        m_nLeds = nLeds;
+        return *this;
+    }
+
+    /// Drollbaer
+    /// Set the default array of LEDs to be used by this controller
+    /// @param data pointer to the LED data
+    /// @param nLeds the number of LEDs in the LED data
     CLEDController & setLeds(CRGB *data, int nLeds, bool bReverse) {
         m_Data = data;
         m_nLeds = nLeds;
