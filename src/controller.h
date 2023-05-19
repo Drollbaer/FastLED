@@ -69,6 +69,8 @@ protected:
     int m_nLeds;               ///< the number of LEDs in the LED data array
     static CLEDController *m_pHead;  ///< pointer to the first LED controller in the linked list
     static CLEDController *m_pTail;  ///< pointer to the last LED controller in the linked list
+    // Drollbaer: 03.05.2023
+    bool m_bReverse;           ///< flag if the strip is reverse
 
     /// Set all the LEDs to a given color. 
     /// @param data the CRGB color to set the LEDs to
@@ -147,9 +149,10 @@ public:
     /// Set the default array of LEDs to be used by this controller
     /// @param data pointer to the LED data
     /// @param nLeds the number of LEDs in the LED data
-    CLEDController & setLeds(CRGB *data, int nLeds) {
+    CLEDController & setLeds(CRGB *data, int nLeds, bool bReverse) {
         m_Data = data;
         m_nLeds = nLeds;
+        m_bReverse = bReverse;
         return *this;
     }
 
@@ -626,7 +629,7 @@ protected:
     /// @param scale the RGB scaling to apply to each LED before writing it out
     virtual void show(const struct CRGB *data, int nLeds, CRGB scale) {
         PixelController<RGB_ORDER, LANES, MASK> pixels(data, nLeds < 0 ? -nLeds : nLeds, scale, getDither());
-        if(nLeds < 0) {
+        if(nLeds < 0 || m_bReverse) {
             // nLeds < 0 implies that we want to show them in reverse
             pixels.mAdvance = -pixels.mAdvance;
         }
