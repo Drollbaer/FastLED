@@ -242,7 +242,7 @@ public:
 	/// @param nLedsIfOffset number of leds (4 argument version)
 	/// @returns a reference to the added controller
 	static CLEDController &addLeds(CLEDController *pLed, struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0);
-
+	static CLEDController &addLedsR(CLEDController *pLed, struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, bool bReverse);
 	/// @name Adding SPI-based controllers
 	/// Add an SPI based CLEDController instance to the world.
 	///
