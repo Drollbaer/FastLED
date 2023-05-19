@@ -370,7 +370,7 @@ public:
 	/// Drollbaer: 19.06.2023
 	/// Add a clockless based CLEDController instance to the world.
 	template<template<uint8_t DATA_PIN, EOrder RGB_ORDER> class CHIPSET, uint8_t DATA_PIN, EOrder RGB_ORDER>
-	static CLEDController &addLeds(struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, bool bReverse) {
+	static CLEDController &addLeds(struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, bool bReverse=false) {
 		static CHIPSET<DATA_PIN, RGB_ORDER> c;
 		return addLeds(&c, data, nLedsOrOffset, nLedsIfOffset, bReverse);
 	}
