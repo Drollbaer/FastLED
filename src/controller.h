@@ -177,6 +177,10 @@ public:
     /// @returns CLEDController::m_nLeds
     virtual int size() { return m_nLeds; }
 
+    /// Is the strip inverted?
+    /// @returns CLEDController::m_bReverse
+    virtual bool inv() { return m_bReverse; }
+
     /// Pointer to the CRGB array for this controller
     /// @returns CLEDController::m_Data
     CRGB* leds() { return m_Data; }
