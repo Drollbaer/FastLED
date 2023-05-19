@@ -372,7 +372,7 @@ public:
 	template<template<uint8_t DATA_PIN, EOrder RGB_ORDER> class CHIPSET, uint8_t DATA_PIN, EOrder RGB_ORDER>
 	static CLEDController &addLedsR(struct CRGB *data, int nLedsOrOffset, int nLedsIfOffset = 0, bool bReverse=false) {
 		static CHIPSET<DATA_PIN, RGB_ORDER> c;
-		return addLeds(&c, data, nLedsOrOffset, nLedsIfOffset, bReverse);
+		return addLedsR(&c, data, nLedsOrOffset, nLedsIfOffset, bReverse);
 	}
 
 #if defined(__FASTLED_HAS_FIBCC) && (__FASTLED_HAS_FIBCC == 1)
